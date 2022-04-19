@@ -14,7 +14,7 @@ public class Utility {
         URL res = null;
         switch (filename.toLowerCase()) {
             case "chrome":
-                res = Utility.class.getClassLoader().getResource("drivers/chromedriver.exe");
+                res = Utility.class.getClassLoader().getResource("drivers/chromedriver");
                 break;
         }
         File file = Paths.get(res.toURI()).toFile();

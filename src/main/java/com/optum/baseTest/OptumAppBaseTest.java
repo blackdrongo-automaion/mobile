@@ -1,21 +1,19 @@
 package com.optum.baseTest;
 
-import com.optum.browsers.Browsers;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+
+import com.optum.web.Browsers;
 
 
-public class OptumAppBaseTest {
-    Browsers browsers =new Browsers();
 
-    @BeforeTest
+public class OptumAppBaseTest extends Browsers{
+
     public void setUp() throws Exception {
-        browsers.init_browser();
+        init_browser().OpenUrl();
+
     }
 
-    @AfterTest
     public void tearDown(){
-        browsers.getDriver().quit();
+        getDriver().quit();
     }
 
 }
