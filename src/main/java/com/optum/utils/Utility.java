@@ -11,12 +11,12 @@ import java.util.Properties;
 public class Utility {
 
     public static String get_Path(String filename) throws URISyntaxException {
-        URL res = switch (filename.toLowerCase()) {
-            case "chrome" ->
-                    Utility.class.getClassLoader().getResource(get_driver_path_based_on_os());
-            default ->
-                    null;
-        };
+        URL res = null;
+        switch (filename.toLowerCase()) {
+            case "chrome":
+                res = Utility.class.getClassLoader().getResource(get_driver_path_based_on_os());
+                break;
+        }
         File file = Paths.get(res.toURI()).toFile();
         return  file.getAbsolutePath();
     }
