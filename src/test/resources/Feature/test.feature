@@ -1,6 +1,13 @@
-Feature: Gmail Login
-  As a user I should able to login into Gmail.
+Feature: Page Element validation on DemoQA
 
-  Scenario: I login with valid credential
-    Given I navigate to
-    Then click on something
+  #Background: User is on demoQA home page
+    #Given user is on Google Home Page
+
+  Scenario: Validate text boxes on demoQA
+    Given user is on Google Home Page
+    Then validate search results
+
+
+  Scenario: Validate radio button on demoQA
+    Given user is on Google Home Page
+    Then verify title

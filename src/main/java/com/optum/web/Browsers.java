@@ -16,10 +16,10 @@ import java.util.Properties;
 public class Browsers {
 
     static private WebDriver driver;
-    ChromeOptions options;
-    Properties prop = Utility.readProperty("config.properties");
+    static ChromeOptions options;
+    static Properties prop = Utility.readProperty("config.properties");
 
-    public Browsers init_browser() throws Exception {
+    public static void init_browser() throws Exception {
         System.setProperty("webdriver.chrome.driver", Utility.get_Path(prop.getProperty("browser.Name")));
         switch(prop.getProperty("browser.Name")){
             case"chrome":
@@ -29,14 +29,13 @@ public class Browsers {
                 driver.manage().window().maximize();
                 break;
         }
-        return this;
     }
 
     public static WebDriver getDriver() {
         return Browsers.driver;
     }
 
-    private void setChromeDesiredCapabilities(){
+    private static void setChromeDesiredCapabilities(){
         options = new ChromeOptions();
         options.addArguments("--disable-extensions");
         Map<String, Object> prefs = new HashMap<String, Object>();
@@ -60,12 +59,13 @@ public class Browsers {
         capabilities.setCapability("version", prop.getProperty("browser.Version"));
     }
 
-    public Browsers OpenUrl(){
+    public static void OpenUrl(){
         driver.get(prop.getProperty("webApplication.Url"));
-        return this;
     }
 
-
+    public static String get_Title(){
+        return getDriver().getTitle();
+    }
 
 
 
