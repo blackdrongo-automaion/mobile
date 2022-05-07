@@ -12,4 +12,6 @@ public class Page1{
     public static By link = By.xpath("//h3[contains(.,'Speedtest by Ookla - The Global Broadband Speed Test')]");
 
     public static By text =By.xpath("//h2[@class='qrShPb kno-ecr-pt PZPZlf q8U8x']/span");
+
+    public static By cleartext = By.xpath("//input[@class='gLFyf gsfi']");
 }

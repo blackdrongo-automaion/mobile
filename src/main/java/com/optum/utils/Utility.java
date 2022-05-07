@@ -10,31 +10,6 @@ import java.util.Properties;
 
 public class Utility {
 
-    public static String get_Path(String filename) throws URISyntaxException {
-        URL res = null;
-        switch (filename.toLowerCase()) {
-            case "chrome":
-                res = Utility.class.getClassLoader().getResource(get_driver_path_based_on_os());
-                break;
-        }
-        File file = Paths.get(res.toURI()).toFile();
-        return  file.getAbsolutePath();
-    }
-
-    public static String get_driver_path_based_on_os(){
-        String path = null;
-        String os = System.getProperty("os.name");
-        switch (os.toLowerCase()){
-            case"mac os x":
-                path = "drivers/mac/chromedriver";
-                break;
-            case"windows":
-                path = "drivers/win/chromedriver.exe";
-                break;
-        }
-        return path;
-    }
-
     public static Properties readProperty(String FileName) {
         String filepath = "config/"+FileName;
         Properties prop = new Properties();

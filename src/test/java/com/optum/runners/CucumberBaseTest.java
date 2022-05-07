@@ -11,24 +11,20 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CucumberBaseTest extends AbstractTestNGCucumberTests {
-    @BeforeClass
-    public void set() throws Exception {
-        OptumAppBaseTest.setUp();
-    }
-
-    @AfterClass
-    public void kill(){
-        OptumAppBaseTest.getDriver().quit();
-    }
 
     private TestNGCucumberRunner testNGCucumberRunner;
 
     @BeforeClass(alwaysRun = true)
     public void setUpClass() {
+        try {
+            OptumAppBaseTest.setUp();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
 
-    @Test(groups = "cucumber", description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
+    @Test(description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
     public void runScenario(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper) {
         testNGCucumberRunner.runScenario(pickleWrapper.getPickle());
     }
@@ -40,6 +36,7 @@ public class CucumberBaseTest extends AbstractTestNGCucumberTests {
 
     @AfterClass(alwaysRun = true)
     public void testDownClass() {
+        OptumAppBaseTest.getDriver().quit();
         testNGCucumberRunner.finish();
     }
 
