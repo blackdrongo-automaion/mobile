@@ -1,34 +1,56 @@
 package com.optum.stepDefinitions;
 
+import com.optum.apiengine.model.requests.RequestBodyData;
+import com.optum.apiengine.model.requests.RestRequest;
+import com.optum.apiengine.model.response.RestResponse;
 import com.optum.baseTest.OptumAppBaseTest;
-import io.cucumber.java.AfterStep;
-import io.cucumber.java.Scenario;
-import org.apache.commons.io.FileUtils;
+import com.optum.utils.Utility;
+import io.cucumber.java.*;
+import io.restassured.response.Response;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.annotations.BeforeClass;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Properties;
 
 public class Hooks extends OptumAppBaseTest {
 
-    @AfterStep
-    public void addScreenshot(Scenario scenario){
+    public static String testStatus;
+    public static String[] rallyIdList;
 
-        //validate if scenario has failed
-        if(scenario.isFailed()) {
+    @Before
+    public void test(Scenario scenario) {
+        ArrayList<String> testId = (ArrayList<String>) scenario.getSourceTagNames();
+        for (String e : testId) {
+            if (e.contains("RallyId")) {
+                rallyIdList = e.split(":");
+                System.out.println(rallyIdList[1]);
+                break;
+            }
+        }
+    }
+
+    @After
+    public void stepStatus(Scenario scenario) {
+        addScreenshot(scenario);
+        //setTestCaseStatus();
+    }
+
+    public void addScreenshot(Scenario scenario) {
+        if (scenario.isFailed()) {
+            testStatus = "Fail";
             final byte[] screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "image");
         }
-
+        testStatus = "Pass";
     }
-    /*
-    @AfterStep
-    public void addScreenshot(Scenario scenario) throws IOException {
-        File screenshot = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-        byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
-        scenario.attach(fileContent, "image/png", "screenshot");
 
-    }*/
+    public void setTestCaseStatus(){
+        Properties prop = Utility.readProperty("rallyconfig.properties");
+        String body = new RequestBodyData("config/rally.json").updateRallyJsonValues(rallyIdList, testStatus);
+        Response response = RestRequest.auth(prop.getProperty("rally.baseUri"), prop.getProperty("rally.basePath"), body);
+        new RestResponse(response).getResponse();
+    }
+
 }

@@ -1,0 +1,21 @@
+{
+  "TestCaseResult": {
+    "Build": "1.0",
+    "Date": "YYY-MM-DD",
+    "TestCase": {
+      "_ref": ""
+    },
+    "TestSet": {
+      "_ref": ""
+    },
+    "Verdict": "Pass",
+    "Workspace": {
+      "_rallyAPIMajor": "2",
+      "_rallyAPIMinor": "0",
+      "_ref": "",
+      "_refObjectUUID": "",
+      "_refObjectName": "",
+      "_type": "Workspace"
+    }
+  }
+}

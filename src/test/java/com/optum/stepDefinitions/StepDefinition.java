@@ -26,9 +26,8 @@ public class StepDefinition {
         step.buildStep("Click on search box", WebAppActions.CLICK, Page1.searchbutton);
         //step.buildStep("Click on link box", WebAppActions.CLICK, Page1.link);
         step.buildStep("Verify Title Present", WebAppActions.VERIFY_TITLE, "Automation - Google Search");
-        step.buildStep("Verify Text Present", WebAppActions.VERIFY_TEXT, Page1.text,"Automation ");
-        step.buildStep("Verify Text Present", WebAppActions.CLEAR, Page1.cleartext);
-        step.buildStep("Verify Text Present", WebAppActions.CLEAR, Page1.cleartext, "Automation");
+        step.buildStep("Verify Text Present", WebAppActions.VERIFY_TEXT, Page1.text,"Automationadf ");
+        step.buildStep("Clear Text Present", WebAppActions.CLEAR, Page1.cleartext);
         step.executeSteps();
     }
 
