@@ -1,4 +1,4 @@
-package com.optum.web;
+package com.optum.mobile;
 
 import com.optum.pages.Elements;
 import com.optum.utils.Utility;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Properties;
 
-public class WebActions extends Elements {
+public class Actions extends Elements {
 
     public void click(){
         Waits.waitForElementToBeClickable();

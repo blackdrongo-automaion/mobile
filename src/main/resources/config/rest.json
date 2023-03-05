@@ -1,0 +1,9 @@
+{
+  "GET": {
+    "endpoint": "/search",
+    "headers": {},
+    "params": {
+      "q": "toolsqa"
+    }
+  }
+}

@@ -23,9 +23,9 @@ public class RequestBodyData {
     public RequestBodyData() {
     }
 
-    public String data(String testID) {
+    public Object data(String testID) {
         path = new JsonPath(new File(RequestBodyData.class.getClassLoader().getResource(this.JsonFilePath ).getFile()));
-        return path.get(testID).toString();
+        return path.get(testID);
     }
 
     public String updateRallyJsonValues(String[] rallyId, String verd){

@@ -1,6 +1,6 @@
-package com.optum.web;
+package com.optum.mobile;
 
-public enum WebAppActions {
+public enum AppActions {
 
     CLICK,
     TYPE,

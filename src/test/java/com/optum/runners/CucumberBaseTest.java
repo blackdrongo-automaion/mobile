@@ -5,10 +5,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class CucumberBaseTest extends AbstractTestNGCucumberTests {
 
@@ -22,7 +19,10 @@ public class CucumberBaseTest extends AbstractTestNGCucumberTests {
             throw new RuntimeException(e);
         }
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+
     }
+
+
 
     @Test(description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
     public void runScenario(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper) {

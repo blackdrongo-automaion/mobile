@@ -1,16 +1,14 @@
 package com.optum.baseTest;
 
 
-import com.optum.web.Browsers;
+import com.optum.mobile.AppLauncher;
 
 
 
-public class OptumAppBaseTest extends Browsers{
+public class OptumAppBaseTest extends AppLauncher {
 
     public static void setUp() throws Exception {
-        init_browser();
-
-
+        init();
     }
 
     public void tearDown(){

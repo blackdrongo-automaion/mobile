@@ -1,16 +1,16 @@
 package com.optum.utilities;
 
 import com.optum.pages.Elements;
-import com.optum.web.Browsers;
-import com.optum.web.WebActions;
-import com.optum.web.WebAppActions;
+import com.optum.mobile.AppLauncher;
+import com.optum.mobile.Actions;
+import com.optum.mobile.AppActions;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Steps implements com.optum.web.StepBase {
+public class Steps implements com.optum.mobile.StepBase {
 
     private String description;
     private By element;
@@ -18,9 +18,9 @@ public class Steps implements com.optum.web.StepBase {
     public final ArrayList<String> stepDes = new ArrayList<>();
     public final HashMap<String, String> actionMap = new HashMap<>();
     public final HashMap<String, String> dataMap = new HashMap<>();
-    WebActions webactions = new WebActions();
+    Actions webactions = new Actions();
 
-    public void buildStep(String description, WebAppActions action, By element) {
+    public void buildStep(String description, AppActions action, By element) {
         this.description = description;
         this.element = element;
         stepDes.add(this.description);
@@ -28,14 +28,14 @@ public class Steps implements com.optum.web.StepBase {
         actionMap.put(this.description, String.valueOf(action));
     }
 
-    public void buildStep(String description, WebAppActions action, String expected) {
+    public void buildStep(String description, AppActions action, String expected) {
         this.description = description;
         stepDes.add(this.description);
         actionMap.put(this.description, String.valueOf(action));
         dataMap.put(this.description, expected);
     }
 
-    public void buildStep(String description, WebAppActions action, By element, String testData) {
+    public void buildStep(String description, AppActions action, By element, String testData) {
         this.description = description;
         this.element = element;
         stepDes.add(this.description);
@@ -59,7 +59,7 @@ public class Steps implements com.optum.web.StepBase {
                     webactions.type(dataMap.get(des));
                     break;
                 case "VERIFY_TITLE":
-                    Assert.assertEquals(Browsers.get_Title(), dataMap.get(des));
+                    Assert.assertEquals(AppLauncher.get_Title(), dataMap.get(des));
                     break;
                 case "VERIFY_TEXT":
                     Assert.assertEquals(webactions.get_text(), dataMap.get(des));

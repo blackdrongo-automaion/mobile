@@ -1,4 +1,4 @@
-package db;
+package com.optum.db;
 
 import com.optum.utils.Utility;
 
