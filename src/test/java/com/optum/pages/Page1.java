@@ -1,17 +1,23 @@
 package com.optum.pages;
 
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Page1{
 
+    WebDriver driver;
 
-    public static By search = By.name("q");
+    public Page1(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
 
-    public static By searchbutton = By.name("btnK");
+    @FindBy(name = "q")
+    public  WebElement searchBar;
 
-    public static By link = By.xpath("//h3[contains(.,'Speedtest by Ookla - The Global Broadband Speed Test')]");
+    @FindBy(name = "btnK")
+    public  WebElement searchbutton;
 
-    public static By text =By.xpath("//h2[@class='qrShPb kno-ecr-pt PZPZlf q8U8x']/span");
-
-    public static By cleartext = By.xpath("//input[@class='gLFyf gsfi']");
 }
